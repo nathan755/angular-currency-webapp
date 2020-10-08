@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+//Primary colours
+$background:#f4f6f9;
+$blue:#0a94f1;
+//Ticker up/down
+$red:#ec0101;
+$green:#28df99;
+//Graph colours
+$graph-blue:#51adcf;
+$graph-green:#ccf6c8;
+$graph-yellow:#ffefa0;
+$graph-red:#f56a79;
+$graph-purple:#d789d7;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
