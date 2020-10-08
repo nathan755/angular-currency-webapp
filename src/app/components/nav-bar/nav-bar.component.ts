@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   constructor() { }
+  
+  startDate;
+  endDate;
 
   ngOnInit(): void {
   }
+
+  dateRangeChanged(event){
+    console.log("event", event)
+    this.startDate = event.start;
+    this.endDate = event.end;
+  }
+
+
 
 }
