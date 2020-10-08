@@ -1,4 +1,16 @@
-<div>
-  <app-nav-bar></app-nav-bar>
+<div class="dashboard">
+	<div class="dashboard__nav-bar">
+		<app-nav-bar></app-nav-bar>
+	</div>
+	<div class="dashboard__ticker">
+		<app-ticker-list></app-ticker-list>
+	</div>
+	<div class="dashboard__main-content-wrapper">
+		<div class="dashboard__main-content-wrapper__graph">
+			  <app-graph></app-graph>
+		</div>
+		<div class="dashboard__main-content-wrapper__converter">
+			  <app-currency-converter></app-currency-converter>
+		</div>
+	</div>
 </div>
-

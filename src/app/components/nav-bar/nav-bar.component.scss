@@ -1,18 +1,17 @@
 @import "../../../styles.scss";
 .nav-bar{
-    height: 50px;
+    height: 100%;
+    display: flex;
     background-color:$blue;
+    align-items: center;
     h1 {
-        color: white;
-        line-height: 50px;
-        margin-left: 12px;
+        color: #e8e8e8;
+        padding-left: 12px;
         display: inline;
     }
-    &__date-picker{
-        margin-top: 3px;
-        float: right;
-        position: relative;
-        right: 24px;
-        color: white;
+    :last-child{
+        margin-left: auto;
     }
+
+    
 }
