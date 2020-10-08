@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DateRangeService } from "../../date-range.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,21 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor() { }
   
-  startDate;
-  endDate;
+  constructor(private _interactionService:DateRangeService) { }
+  
+  startDate:string;
+  endDate:string;
 
   ngOnInit(): void {
+    // subscribe to date range service
+    this._interactionService.dateRange$.subscribe(dateRange =>{
+      this.startDate = dateRange.start;
+      this.endDate = dateRange.end;
+    });
   }
-
-  dateRangeChanged(event){
-    console.log("event", event)
-    this.startDate = event.start;
-    this.endDate = event.end;
-  }
-
-
-
 }
