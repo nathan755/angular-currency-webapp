@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DateRangeService } from "../../date-range.service";
 
 @Component({
   selector: 'app-date-range',
@@ -6,10 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-range.component.scss']
 })
 export class DateRangeComponent implements OnInit {
-
-  constructor() { }
+  range = new FormGroup({
+    start:new FormControl(),
+    end:new FormControl()
+  });
+  
+  @Output() newDateRange = new EventEmitter<object>();
+  
+  constructor(private _interactionService:DateRangeService) { }
 
   ngOnInit(): void {
   }
+
+  onDateSubmit(){
+    // call dispatchDateRange from date-range-service
+    this._interactionService.dispatchDateRange(this.range.value)
+  }
+
+
+
+
+  
+
+
+
+
+
 
 }

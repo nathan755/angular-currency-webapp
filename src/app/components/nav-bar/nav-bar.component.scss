@@ -1,0 +1,18 @@
+@import "../../../styles.scss";
+.nav-bar{
+    height: 50px;
+    background-color:$blue;
+    h1 {
+        color: white;
+        line-height: 50px;
+        margin-left: 12px;
+        display: inline;
+    }
+    &__date-picker{
+        margin-top: 3px;
+        float: right;
+        position: relative;
+        right: 24px;
+        color: white;
+    }
+}

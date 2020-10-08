@@ -1,7 +1,7 @@
-import { MatSliderModule } from '@angular/material/slider';
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// My Components
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { GraphComponent } from './components/graph/graph.component';
@@ -10,7 +10,11 @@ import { TickerListComponent } from './components/ticker-list/ticker-list.compon
 import { TickerItemComponent } from './components/ticker-item/ticker-item.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+// other stuff
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +24,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CurrencyConverterComponent,
     TickerListComponent,
     TickerItemComponent,
-    DateRangeComponent
+    DateRangeComponent,
+    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
