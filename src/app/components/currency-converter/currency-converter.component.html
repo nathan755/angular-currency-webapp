@@ -1,17 +1,25 @@
 <div class="converter">
-    <input type="text" [formControl]="amount">
-    <select [formControl]="currencyOne">
-        <option>Hello</option>
-        <option>no</option>
-        <option>whai </option>
-        <option>oh no</option>
-    </select>
-    <select [formControl]="currencyTwo">
-        <option>Hello</option>
-        <option>no</option>
-        <option>whai </option>
-        <option>oh no</option>
-    </select>
-    <button (click)="onConvertClick()">Convert</button>
-    <P>{{result}}</P>
+    <h2>Converter</h2>
+    <div class="converter__input">
+        <input type="text" placeholder="Enter Amount.." [formControl]="amount">
+    </div>
+    <div class="converter__dropdown">
+        <label>From</label>
+        <select [formControl]="currencyOne">
+            <option *ngFor="let currency of tickers">{{currency}}</option>
+        </select>
+    </div>
+    <div class="converter__dropdown">
+        <label>To</label>
+        <select [formControl]="currencyTwo">
+            <option *ngFor="let currency of tickers">{{currency}}</option>
+        </select>
+    </div>
+
+   
+
+    <div (click)="onConvertClick()" class="converter__button">
+        <button >CONVERT</button>
+    </div>
+    <p> {{result}} {{currencyTwo.value}} = {{amount.value}} {{currencyOne.value}}</p>
 </div>
