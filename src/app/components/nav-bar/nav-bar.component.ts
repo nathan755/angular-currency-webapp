@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DateRangeService } from "../../date-range.service";
+import { DateRangeService } from "../../services/date-range.service";
 
 @Component({
   selector: 'app-nav-bar',
