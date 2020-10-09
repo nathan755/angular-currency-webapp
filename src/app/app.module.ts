@@ -16,6 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
+import { RisersFallersComponent } from './components/risers-fallers/risers-fallers.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     TickerListComponent,
     TickerItemComponent,
     DateRangeComponent,
+    RisersFallersComponent,
     
   ],
   imports: [

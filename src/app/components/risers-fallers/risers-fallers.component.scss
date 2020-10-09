@@ -1,0 +1,12 @@
+@import "../../../styles.scss";
+.risers-fallers {
+    background-color: white;
+    height: 100%;
+    margin: 6px;
+    box-shadow: 2px 2px 4px black;
+    h2{
+        color: $blue;
+        font-size: 2em;
+        text-align: center;
+    }
+}
