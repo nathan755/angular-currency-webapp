@@ -9,4 +9,24 @@
         font-size: 2em;
         text-align: center;
     }
+    table {
+        width: 85%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    label{
+        width: 85%;
+        margin: 6px auto;
+        display: block;
+        font-weight: bold;
+    }
+    tr:nth-child(even){
+        background-color: #dddddd
+    }
+    &__risers-table{
+
+    }
+    &__fallers-table{
+
+    }
 }
