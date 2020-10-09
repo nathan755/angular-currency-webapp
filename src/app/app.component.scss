@@ -1,23 +1,27 @@
 @import "../styles.scss";
 .dashboard{
     height: 100%;
-    border: 2px black solid;
+    
     display: grid;
     grid-template-rows: 1fr 3fr 12fr;
+    
     &__nav-bar{
-        border: solid 2px green;
+        // border: solid 2px green;
     }
     &__ticker{
-       border: solid 2px red;
+    //    border: solid 2px red;
     }
     &__main-content-wrapper{
         display: grid;
         grid-template-columns: 3fr 1fr;
+        
         &__graph {
-            border: solid 2px blue;
+            // border: solid 2px blue;
         }
-        &__converter{
-            border: solid 2px violet;
+        &__tools{
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            
         }
     }
 }
