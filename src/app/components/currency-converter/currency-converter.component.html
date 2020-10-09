@@ -1,3 +1,17 @@
 <div class="converter">
-    <h1>Currency Converter</h1>
+    <input type="text" [formControl]="amount">
+    <select [formControl]="currencyOne">
+        <option>Hello</option>
+        <option>no</option>
+        <option>whai </option>
+        <option>oh no</option>
+    </select>
+    <select [formControl]="currencyTwo">
+        <option>Hello</option>
+        <option>no</option>
+        <option>whai </option>
+        <option>oh no</option>
+    </select>
+    <button (click)="onConvertClick()">Convert</button>
+    <P>{{result}}</P>
 </div>
