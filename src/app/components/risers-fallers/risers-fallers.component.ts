@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataFetchingService } from "../../services/data-fetch/data-fetching.service";
 import * as moment from 'moment';
 
@@ -19,11 +19,12 @@ export class RisersFallersComponent implements OnInit {
 	
 	risers: Array<comparsionOutput>;
 	fallers: Array<comparsionOutput>;
+
 	
 	ngOnInit(): void {
-		// use global date range for this
-		const today = moment().format("YYYY-MM-DD");
-		const yesterday = moment().subtract(1, "days").format("YYYY-MM-DD");
+		// rename 
+		const today = moment().subtract(1,"days").format("YYYY-MM-DD");
+		const yesterday = moment().subtract(2, "days").format("YYYY-MM-DD");
 
 		this.dataFetchingService.fetchCurrencyData(true, { start_at: yesterday, end_at: today, base: "USD" }).subscribe(
 			(res) => {
@@ -42,6 +43,10 @@ export class RisersFallersComponent implements OnInit {
 			}
 		);
 	}
+
+
+
+
 
 	compareRates(yesterdayRates: object, latestRates: object): Array<comparsionOutput> {
 		const outputArray: Array<comparsionOutput> = [];
