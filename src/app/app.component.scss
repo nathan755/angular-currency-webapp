@@ -1,15 +1,15 @@
 @import "../styles.scss";
 .dashboard{
     height: 100%;
-    
     display: grid;
-    grid-template-rows: 1fr 3fr 12fr;
+    grid-template-rows: 1fr 5fr 12fr;
+    
     
     &__nav-bar{
-        // border: solid 2px green;
+        
     }
     &__ticker{
-       border: solid 2px red;
+        overflow-x: scroll;
     }
     &__main-content-wrapper{
         display: grid;

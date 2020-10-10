@@ -1,3 +1,4 @@
+
 <div class="ticker-list">
-    <app-ticker-item [end]="end" [start]="start" [currency]="testTicker"></app-ticker-item>
+    <app-ticker-item *ngFor="let item of tickers" [end]="end" [start]="start" [currency]="item"></app-ticker-item>
 </div>

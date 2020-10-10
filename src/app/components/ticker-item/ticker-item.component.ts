@@ -49,23 +49,28 @@ export class TickerItemComponent implements OnInit {
 			const currencyPrices = this.formatData(res.rates);
 			const config = {
 				title: { text: "USD/" + this.currency },
+				chart: {
+					height: 200,
+					width:200,
+					type: 'spline',
+				},
+				legend:{ enabled:false },
 				series: [{
+					
 					name: "Exchange Rate",
-					type: "spline",
+					
 					data: currencyPrices,
 				}],
+				yAxis: {
+					title:{
+						text:null
+					}
+				},
 				xAxis: {
 					type: "datetime",
-					title: {
-						text: 'Date'
-					}
-
 				},
-				yAxis: {
-					title: {
-						text: 'Exchange rate'
-					}
-				},
+				
+				
 				credits: {
 					enabled: false
 				},
