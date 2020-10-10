@@ -17,6 +17,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import { RisersFallersComponent } from './components/risers-fallers/risers-fallers.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RisersFallersComponent } from './components/risers-fallers/risers-falle
     MatNativeDateModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartModule
     
     
   ],
