@@ -1,4 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { tick } from '@angular/core/testing';
+import { DataFetchingService } from "../../services/data-fetch/data-fetching.service";
+import * as moment from "moment";
+import * as Highcharts from 'highcharts';
+
+
 
 @Component({
 	selector: 'app-ticker-item',
@@ -7,17 +13,85 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TickerItemComponent implements OnInit {
 
-	@Input() start:string;
-	@Input() end:string;
+	@Input() start: string;
+	@Input() end: string;
+	@Input() currency: string;
 
-	constructor() { }
+	startDate: string;
+	endDate: string;
+	error: boolean;
+	rates: Array<object>;
+
+	Highcharts: typeof Highcharts = Highcharts;
+	chartOptions;
+
+	constructor(private dataFetchingService: DataFetchingService) { }
 
 	ngOnInit(): void {
+		// use last 7 days on init (not including today).
+		const endDate = moment().subtract(1, "days").format("YYYY-MM-DD");
+		const startDate = moment().subtract(7, "days").format("YYYY-MM-DD");
+		this.fetchData(startDate, endDate, this.currency);
 	}
-	ngOnChanges():void {
-	console.log("change please", this.end)
-	console.log("change please", this.start)
 
+	ngOnChanges(): void {
+		// once the user changes the date range use props
+		this.fetchData(this.start, this.end, this.currency);
 	}
 
+	fetchData(start: string, end: string, currency: string): void {
+		this.dataFetchingService.fetchCurrencyData(true, {
+			start_at: start,
+			end_at: end,
+			symbols: currency,
+			base: "USD"
+		}).subscribe((res) => {
+			const currencyPrices = this.formatData(res.rates);
+			const config = {
+				title: { text: "USD/" + this.currency },
+				series: [{
+					name: "Exchange Rate",
+					type: "spline",
+					data: currencyPrices,
+				}],
+				xAxis: {
+					type: "datetime",
+					title: {
+						text: 'Date'
+					}
+
+				},
+				yAxis: {
+					title: {
+						text: 'Exchange rate'
+					}
+				},
+				credits: {
+					enabled: false
+				},
+
+			};
+			this.chartOptions = { ...config };
+		},
+			(err) => {
+				console.log("err", err)
+				this.error = true;
+			});
+	}
+	
+	formatData(data:object){
+		// format and sort data for highcharts config
+		const formattedData = [];
+		const array = Object.entries(data);
+		const length = array.length;
+		for(let i=0; i<length; i++ ){
+			const timeStamp = moment(array[i][0]).unix();
+			const price = array[i][1][this.currency];
+			formattedData.push([timeStamp*1000, price]);
+		}
+		formattedData.sort( (a, b) => {
+			return a[0] - b[0]
+		});
+		return formattedData;
+	}
 }
