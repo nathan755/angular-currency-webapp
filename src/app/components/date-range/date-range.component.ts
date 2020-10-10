@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DateRangeService } from "../../services/date-range/date-range.service";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-date-range',
@@ -19,20 +20,14 @@ export class DateRangeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  onDateSubmit(){
-    // call dispatchDateRange from date-range-service
-    this._interactionService.dispatchDateRange(this.range.value)
-  }
-
-
-
-
   
-
-
-
-
-
-
+  onDateSubmit(){
+    // call dispatchDateRange from date-range-service. ie send new date range to service.
+    // any components subscriebd to the date range service will recieve the updated date raneg.
+    
+    const start = moment(this.range.value.start).format("YYYY-MM-DD");
+    const end = moment(this.range.value.end).format("YYYY-MM-DD");
+    
+    this._interactionService.dispatchDateRange({start, end});
+  }
 }
