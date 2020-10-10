@@ -1,6 +1,6 @@
 // Angular
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // My Components
 import { AppComponent } from './app.component';
@@ -17,9 +17,10 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import { RisersFallersComponent } from './components/risers-fallers/risers-fallers.component';
-import { ChartModule } from 'angular-highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -39,7 +40,7 @@ import { ChartModule } from 'angular-highcharts';
     MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ChartModule
+    HighchartsChartModule
     
     
   ],
