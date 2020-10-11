@@ -76,14 +76,19 @@ export class GraphComponent implements OnInit {
 	}
 
 	ngOnChanges(): void {
-		console.log("data", this.data)
+		console.log("data", this.data[0])
 		if(this.data !== undefined){
-			// this.updateFlag = true
-			this.dataArray.push(this.data[0])
+			// convert prices into percentage var
+			
+			const convertedPrices = this.convertToPercentageChange(this.data[0].data);
+			const formattedData = {"name":this.data[0].name, data:convertedPrices};
+
+
+			this.dataArray.push(formattedData)
 			
 		}
-		console.log("dataArrayu", this.dataArray)
-		console.log("this.chartOptions",this.chartOptions)
+		
+		
 		this.chartOptions = {...this.chartOptions, series:this.dataArray}
 		this.test = true
 	}
