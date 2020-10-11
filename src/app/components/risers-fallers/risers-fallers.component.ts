@@ -23,8 +23,8 @@ export class RisersFallersComponent implements OnInit {
 	
 	ngOnInit(): void {
 		// rename 
-		const today = moment().subtract(1,"days").format("YYYY-MM-DD");
-		const yesterday = moment().subtract(2, "days").format("YYYY-MM-DD");
+		const today = moment().subtract(2,"days").format("YYYY-MM-DD");
+		const yesterday = moment().subtract(3, "days").format("YYYY-MM-DD");
 
 		this.dataFetchingService.fetchCurrencyData(true, { start_at: yesterday, end_at: today, base: "USD" }).subscribe(
 			(res) => {

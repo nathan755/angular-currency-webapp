@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DateRangeService } from "./services/date-range/date-range.service";
+import { DataFetchingService } from "./services/data-fetch/data-fetching.service";
+
 import * as moment from 'moment';
 
 @Component({
@@ -9,9 +10,13 @@ import * as moment from 'moment';
 })
 export class AppComponent {
 	
-	constructor(private dateRange: DateRangeService) { }
+	data;
 
-	ngOnInit(): void {}
+	constructor( private dataService: DataFetchingService) { }
+	
+	ngOnInit(): void {
+		this.dataService.data.subscribe( data => this.data = data )
+	}
 
 	title = 'currency';
 }

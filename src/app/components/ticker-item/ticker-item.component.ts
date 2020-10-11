@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { DataFetchingService } from "../../services/data-fetch/data-fetching.service";
 import * as moment from "moment";
 import * as Highcharts from 'highcharts';
@@ -47,6 +46,7 @@ export class TickerItemComponent implements OnInit {
 			base: "USD"
 		}).subscribe((res) => {
 			const currencyPrices = this.formatData(res.rates);
+			this.rates = currencyPrices
 			const config = {
 				title: { text: "USD/" + this.currency },
 				chart: {
@@ -70,6 +70,7 @@ export class TickerItemComponent implements OnInit {
 					type: "datetime",
 				},
 				
+			
 				
 				credits: {
 					enabled: false
@@ -77,6 +78,7 @@ export class TickerItemComponent implements OnInit {
 
 			};
 			this.chartOptions = { ...config };
+			
 		},
 			(err) => {
 				console.log("err", err)
@@ -98,5 +100,18 @@ export class TickerItemComponent implements OnInit {
 			return a[0] - b[0]
 		});
 		return formattedData;
+	}
+
+	ongraphClick():void{
+		// btn to show this graphs data on main graph.
+
+		console.log("rates", this.rates)
+
+		this.dataFetchingService.dispatchData( [{
+					
+					name: "Exchange Rate",
+					
+					data: this.rates,
+				}]);
 	}
 }

@@ -12,8 +12,7 @@ export class TickerListComponent implements OnInit {
 	end: string;
 	tickers: string[];
 	error: boolean;
-	testTicker = "GBP";
-
+	
 	constructor(private dateRange: DateRangeService, private dataService: DataFetchingService) { }
 
 	ngOnInit(): void {

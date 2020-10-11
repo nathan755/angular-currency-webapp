@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 interface response {
 	rates:object
@@ -17,6 +18,8 @@ export class DataFetchingService {
 	
 	baseUrlHistory:string = "https://api.exchangeratesapi.io/history";
 	baseUrlLatest:string = "https://api.exchangeratesapi.io/latest";
+	private dataSource = new Subject<object>();
+	data = this.dataSource.asObservable();
 	
 	constructor(private request: HttpClient) { }
 
@@ -38,4 +41,10 @@ export class DataFetchingService {
 			return this.request.get<response>(this.baseUrlLatest, {params:params});
 		}
 	}
+
+	dispatchData(config:object){
+		
+		this.dataSource.next(config);
+	}
+
 }
