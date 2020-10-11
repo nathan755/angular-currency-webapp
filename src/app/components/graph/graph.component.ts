@@ -14,10 +14,10 @@ export class GraphComponent implements OnInit {
 	updateFlag:boolean;
 	@Input() data;
 	dataArray = []
+	test:boolean
 	constructor( private dataService: DataFetchingService) { }
 
 	ngOnInit(): void {
-		//build inital config  for highcharts => wait for user input to add data.
 		const config = {
 			title: { text: "CLick on graphs above to compare" },
 			chart: {
@@ -29,19 +29,50 @@ export class GraphComponent implements OnInit {
 			yAxis: {
 				title:{
 					text:"Exchange Rate"
-				}
+				},
+		
+				
 			},
 			xAxis: {
 				type: "datetime",
+				
 			},
 			credits: {
 				enabled: false
 			},
 		};
-		
-
-	
 		this.chartOptions = config;
+
+		let test = [
+			[1602025200000, 1.2910],
+			[1602025200000, 1.3238],
+			[1602025200000, 1.3208],
+			[1602025200000, 1.3160],
+			[1602025200000, 1.2806],
+			[1602025200000, 1.2541],
+			[1602025200000, 1.2278],
+			[1602025200000, 1.2406],
+
+		]
+		let test2 = [
+			[1602025200000, 8.72],
+			[1602025200000, 8.51],
+			[1602025200000, 8],
+			[1602025200000, 8.5],
+			[1602025200000, 10],
+			[1602025200000, 1.5],
+			[1602025200000, 3.2],
+			[1602025200000, 3.2],
+
+		]
+		let result = this.convertToPercentageChange(test2);
+		console.log("result",result)
+
+
+
+
+
+
 	}
 
 	ngOnChanges(): void {
@@ -54,8 +85,21 @@ export class GraphComponent implements OnInit {
 		console.log("dataArrayu", this.dataArray)
 		console.log("this.chartOptions",this.chartOptions)
 		this.chartOptions = {...this.chartOptions, series:this.dataArray}
+		this.test = true
+	}
+
+	convertToPercentageChange(data:Array<number[]>):Array<number[]>{
+		// function converts exchange rates to percent change so the data can be compared against other currencies.
+		const length = data.length;
+		const output = [];
+		for(let i=0; i<length-1; i++){
+			const previous = data[i][1]
+			const current = data[i+1][1];
+			const result = ((current - previous) / previous)*100;
+			output.push([data[i][0], result]);
+		}
+		return output; 	
 	}
 
 
 }
-// {name:"test", data:this.dummyData},{name:"test1", data:this.dummy1data}

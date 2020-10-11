@@ -30,6 +30,35 @@ export class TickerItemComponent implements OnInit {
 		// use last 7 days on init (not including today).
 		const endDate = moment().subtract(1, "days").format("YYYY-MM-DD");
 		const startDate = moment().subtract(7, "days").format("YYYY-MM-DD");
+		const config = {
+			title: { text: "USD/" + this.currency },
+			chart: {
+				height: 200,
+				width:200,
+				type: 'spline',
+			},
+			legend:{ enabled:false },
+			series: [{
+				name: "Exchange Rate",
+				data: [1],
+			}],
+			yAxis: {
+				title:{
+					text:null
+				}
+			},
+			xAxis: {
+				type: "datetime",
+			},
+			
+		
+			
+			credits: {
+				enabled: false
+			},
+
+		};
+		this.chartOptions = config
 		this.fetchData(startDate, endDate, this.currency);
 	}
 
@@ -56,9 +85,7 @@ export class TickerItemComponent implements OnInit {
 				},
 				legend:{ enabled:false },
 				series: [{
-					
 					name: "Exchange Rate",
-					
 					data: currencyPrices,
 				}],
 				yAxis: {
@@ -105,11 +132,11 @@ export class TickerItemComponent implements OnInit {
 	ongraphClick():void{
 		// btn to show this graphs data on main graph.
 
-		console.log("rates", this.rates)
+		// console.log("rates", this.rates)
 
 		this.dataFetchingService.dispatchData( [{
 					
-					name: "Exchange Rate",
+					name:this.currency,
 					
 					data: this.rates,
 				}]);
