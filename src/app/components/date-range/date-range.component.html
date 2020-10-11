@@ -8,7 +8,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-    <button (click)="onDateSubmit()">Submit</button>
+    <button  [ngStyle]="{'cursor': range.status==='INVALID' ? 'not-allowed':''}" [disabled]="range.status === 'INVALID' " (click)="onDateSubmit()">Submit</button>
 </div>
 
 

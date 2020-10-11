@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateRangeService } from "../../services/date-range/date-range.service";
 import * as moment from 'moment';
 
@@ -10,8 +10,8 @@ import * as moment from 'moment';
 })
 export class DateRangeComponent implements OnInit {
   range = new FormGroup({
-    start:new FormControl(),
-    end:new FormControl()
+    start:new FormControl("",Validators.required),
+    end:new FormControl("",Validators.required)
   });
   
   @Output() newDateRange = new EventEmitter<object>();
