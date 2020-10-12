@@ -1,6 +1,7 @@
 // Angular
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 // My Components
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -15,8 +16,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
+import { RisersFallersComponent } from './components/risers-fallers/risers-fallers.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+// import { FormsModule} from "@angular/forms/forms";
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -25,6 +30,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     TickerListComponent,
     TickerItemComponent,
     DateRangeComponent,
+    RisersFallersComponent,
     
   ],
   imports: [
@@ -33,7 +39,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HighchartsChartModule,
+    // FormsModule
     
     
   ],

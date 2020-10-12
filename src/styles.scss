@@ -10,11 +10,57 @@ $graph-green:#ccf6c8;
 $graph-yellow:#ffefa0;
 $graph-red:#f56a79;
 $graph-purple:#d789d7;
-
+// text
+$light:#e8e8e8;
 html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: $background;
  }
+
+button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.error-msg {
+	color: $red;
+}
+
+h2 {
+	font-size: 2em;
+	color: $blue;
+	margin: 0px;
+}
+.clear{
+	clear: both;
+}
+.mat-datepicker-toggle{
+	background-color: $blue !important ;
+}
+.mat-calendar-body-selected {
+	background-color: $blue !important ;
+}
+
+.mat-calendar-body-in-range::before {
+	background-color: $blue;
+}
+
+.mat-datepicker-toggle-active {
+	background-color: $blue !important;
+}
+
+
+
+
+
+select.ng-valid {
+	// background-color: $graph-blue;
+}
 

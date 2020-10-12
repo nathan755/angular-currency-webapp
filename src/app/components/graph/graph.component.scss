@@ -1,0 +1,32 @@
+@import "../../../styles.scss";
+
+.graph {
+    background-color: white;
+    box-shadow: 2px 2px 4px black;
+    margin: 3px;
+    height: 100%;
+    position: relative;
+    &__clear-button{
+        display: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $blue;
+        width: 75px;
+        margin: 12px 0 12px 6px;
+        color: white;
+        height: 30px;
+        cursor: pointer;
+        font-weight: 400;
+        border-radius: 6px;
+        position: absolute;
+        right: 12px;
+        top:0;
+        &:active {
+            background-color: darken($blue,5%);
+        }
+    }
+    
+   
+   
+}

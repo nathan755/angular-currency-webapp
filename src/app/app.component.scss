@@ -1,0 +1,28 @@
+@import "../styles.scss";
+.dashboard{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 5fr 12fr;
+    grid-gap: 6px;
+    
+    &__nav-bar{
+        
+    }
+    &__ticker{
+        overflow-x: scroll;
+    }
+    &__main-content-wrapper{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        
+        &__graph {
+            // border: solid 2px blue;
+        }
+        &__tools{
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-gap: 6px;
+            
+        }
+    }
+}

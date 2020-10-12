@@ -1,1 +1,4 @@
-<p>graph works!</p>
+<div class="graph">
+        <highcharts-chart [oneToOne]="update" [Highcharts]="Highcharts" [options]="chartOptions"></highcharts-chart>
+        <button (click)="onClearClick()" class="graph__clear-button">Clear</button>
+</div>
