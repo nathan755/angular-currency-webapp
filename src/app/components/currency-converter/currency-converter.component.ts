@@ -42,9 +42,8 @@ export class CurrencyConverterComponent implements OnInit {
 		// fetch currency rates for currencyOne.
 		this.dataFetchingService.fetchCurrencyData(false, { base: currencyOne }).subscribe(
 			(res) => {
-
 				this.result = this.converterForm.value.amount * res.rates[this.converterForm.value.currencyTwo];
-				console.log("result", this.result)
+				
 			},
 			(err) => {
 				console.log("err", err);

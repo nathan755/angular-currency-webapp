@@ -2,8 +2,9 @@
 .risers-fallers {
     background-color: white;
     height: 100%;
-    margin: 6px;
+    margin: 3px 12px 3px 3px;
     box-shadow: 2px 2px 4px black;
+    box-sizing: border-box;
     h2{
         text-align: center;
         padding-top: 6px;
@@ -24,7 +25,8 @@
     }
     small {
         float: right;
-        margin: 6px;
+        
+        margin-right: 12px;
         font-style: italic;
     }
 }

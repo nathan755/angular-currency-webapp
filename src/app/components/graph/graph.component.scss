@@ -4,6 +4,7 @@
     background-color: white;
     box-shadow: 2px 2px 4px black;
     margin: 3px;
+    margin: 3px 3px 6px 6px;
     height: 100%;
     position: relative;
     &__clear-button{
@@ -22,9 +23,6 @@
         position: absolute;
         right: 12px;
         top:0;
-        &:active {
-            background-color: darken($blue,5%);
-        }
     }
     
    

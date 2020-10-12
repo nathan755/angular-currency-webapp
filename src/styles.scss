@@ -12,11 +12,13 @@ $graph-red:#f56a79;
 $graph-purple:#d789d7;
 // text
 $light:#e8e8e8;
-html, body { height: 100%; }
+html, body { height: 100vh; }
 body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: $background;
+	margin: 0; 
+	padding: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	background-color: $background;
+	overflow: hidden
  }
 
 button {
@@ -56,11 +58,23 @@ h2 {
 	background-color: $blue !important;
 }
 
-
-
-
-
-select.ng-valid {
-	// background-color: $graph-blue;
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+	background-color: white;
 }
+
+svg {
+	fill: white;
+}
+
+.mat-date-range-input-start-wrapper{
+	color: white;
+}
+
+.mat-date-range-input-end-wrapper{
+	color: white;
+}
+
+
+
+
 
