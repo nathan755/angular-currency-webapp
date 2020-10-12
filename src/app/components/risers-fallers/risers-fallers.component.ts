@@ -19,21 +19,25 @@ export class RisersFallersComponent implements OnInit {
 	
 	risers: Array<comparsionOutput>;
 	fallers: Array<comparsionOutput>;
-
 	
 	ngOnInit(): void {
-		// rename 
-		const today = moment().subtract(2,"days").format("YYYY-MM-DD");
-		const yesterday = moment().subtract(3, "days").format("YYYY-MM-DD");
 
-		this.dataFetchingService.fetchCurrencyData(true, { start_at: yesterday, end_at: today, base: "USD" }).subscribe(
+		const lastMonday = moment().startOf('isoWeek').subtract(7, "days").format("YYYY-MM-DD");
+		const lastFriday = moment(lastMonday).add(4, "days").format("YYYY-MM-DD");
+
+		this.dataFetchingService.fetchCurrencyData(true, { start_at: lastMonday, end_at: lastFriday, base: "USD" }).subscribe(
 			(res) => {
-				// percentChangeArray = array of percent changes between yesterday and today.
-				const percentChangeArray = this.compareRates(res.rates[yesterday], res.rates[today]);
-				// sort => percentChangeArray
+				// Get last Monday and Fridays rates and compare the rise / fall.
+				const percentChangeArray = this.compareRates(res.rates[lastMonday], res.rates[lastFriday]);
+
+				// Sort the array from lowest rise to highest.
 				percentChangeArray.sort((a, b) => (a.percentChange) - (b.percentChange));
+
+				// Remove USD from the array because all rates are compared against the USD.
 				const indexOfUSD = percentChangeArray.findIndex((item) => item.ticker === "USD")
-				percentChangeArray.splice(indexOfUSD,1)
+				percentChangeArray.splice(indexOfUSD, 1)
+
+				// Get top three risers and fallers.
 				const len = percentChangeArray.length;
 				this.fallers = [percentChangeArray[0], percentChangeArray[1], percentChangeArray[2]];
 				this.risers = [percentChangeArray[len - 1], percentChangeArray[len - 2], percentChangeArray[len - 3]];
@@ -44,25 +48,27 @@ export class RisersFallersComponent implements OnInit {
 		);
 	}
 
-
-
-
-
-	compareRates(yesterdayRates: object, latestRates: object): Array<comparsionOutput> {
+	compareRates(mondayRates: object, latestRates: object): Array<comparsionOutput> {
+		
 		const outputArray: Array<comparsionOutput> = [];
-		// convert the rates objects into arrays.
+
+		// Convert the rate object into array.
 		const latestRatesArray = Object.keys(latestRates).map(item => { return { ticker: item, price: latestRates[item] } });
-		// loop over latest rates => calculate percentage diff between yesterdays and latest => push result into output array.
+		
+		// loop over latest rates array => calculate percentage diff between last friday and last monday => push result into output array.
 		const length = latestRatesArray.length;
 		for (let i = 0; i < length; i++) {
-			// ticker = current currency ticker i.e USD
+			// Ticker = current currency ticker i.e USD
 			const ticker: string = latestRatesArray[i].ticker;
-			const latestPrice: number = latestRatesArray[i].price;
-			// grab yesterdays price for current currency
-			const yesterdayPrice: number = yesterdayRates[ticker];
-			const difference: number = latestPrice - yesterdayPrice;
-			const percentChange = (difference / yesterdayPrice) * 100;
-			outputArray.push({ ticker, percentChange:percentChange.toFixed(4), latestPrice:latestPrice.toFixed(3) });
+
+			// grab both prices to compare.
+			const fridayPrice: number = latestRatesArray[i].price;
+			const mondayPrice: number = mondayRates[ticker];
+
+			// Percent change between friday and monday.
+			const difference: number = fridayPrice - mondayPrice;
+			const percentChange = (difference / mondayPrice) * 100;
+			outputArray.push({ ticker, percentChange:percentChange.toFixed(4), latestPrice:fridayPrice.toFixed(3) });
 		}
 		return outputArray;
 	}

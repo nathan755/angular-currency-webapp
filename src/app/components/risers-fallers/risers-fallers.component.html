@@ -1,38 +1,36 @@
 <div class="risers-fallers">
-  <h2>Risers/Fallers</h2>
-  <label>Risers</label>
-  <table cellspacing="0" class="risers-fallers__risers-table">
-    <tr>
-      <th>Currency</th>
-      <th>Price</th>
-      <th>24h +/- (%)</th>
-    </tr>
-    <tr *ngFor="let item of risers">
-      <td>USD/{{ item.ticker }}</td>
-      <td>{{ item.latestPrice }}</td>
-      <td
-        [ngStyle]="{ color: item.percentChange >= 0 ? '#28df99' : '#ec0101' }"
-      >
-        {{ item.percentChange }}
-      </td>
-    </tr>
-  </table>
-  <hr />
-  <label>Fallers</label>
-  <table cellspacing="0" class="risers-fallers__risers-table">
-    <tr>
-      <th>Currency</th>
-      <th>Price</th>
-      <th>24h +/- (%)</th>
-    </tr>
-    <tr *ngFor="let item of fallers">
-      <td>USD/{{ item.ticker }}</td>
-      <td>{{ item.latestPrice }}</td>
-      <td
-        [ngStyle]="{ color: item.percentChange >= 0 ? '#28df99' : '#ec0101' }"
-      >
-        {{ item.percentChange }}
-      </td>
-    </tr>
-  </table>
+	<h2>Risers/Fallers</h2>
+	<label>Risers*</label>
+	<table cellspacing="0" class="risers-fallers__risers-table">
+		<tr>
+			<th>Currency</th>
+			<th>Price</th>
+			<th>5 day +/- (%)</th>
+		</tr>
+		<tr *ngFor="let item of risers">
+			<td>USD/{{ item.ticker }}</td>
+			<td>{{ item.latestPrice }}</td>
+			<td [ngStyle]="{ color: item.percentChange >= 0 ? '#28df99' : '#ec0101' }">
+				{{ item.percentChange }}
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<label>Fallers*</label>
+	<table cellspacing="0" class="risers-fallers__risers-table">
+		<tr>
+			<th>Currency</th>
+			<th>Price</th>
+			<th>5 day +/- (%)</th>
+		</tr>
+		<tr *ngFor="let item of fallers">
+			<td>USD/{{ item.ticker }}</td>
+			<td>{{ item.latestPrice }}</td>
+			<td [ngStyle]="{ color: item.percentChange >= 0 ? '#28df99' : '#ec0101' }">
+				{{ item.percentChange }}
+			</td>
+		</tr>
+	</table>
+	<small>*Data from last working week</small>
+	<div class="clear"></div>
 </div>
