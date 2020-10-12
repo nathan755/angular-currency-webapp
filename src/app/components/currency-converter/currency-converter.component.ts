@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { DataFetchingService } from "../../services/data-fetch/data-fetching.service";
 //!! unsubsscibe ????
 @Component({
@@ -14,9 +14,14 @@ export class CurrencyConverterComponent implements OnInit {
 	error:boolean = false;
 	result:number;
 
-	amount = new FormControl();
-	currencyOne = new FormControl();
-	currencyTwo = new FormControl();
+
+	converterForm = new	FormGroup({
+		amount : new FormControl("",[Validators.required,this.numberValidator]),
+		currencyOne : new FormControl("",Validators.required),
+		currencyTwo : new FormControl("",Validators.required)
+	},{updateOn:'submit'});
+
+
 	
 	constructor(private dataFetchingService:DataFetchingService ) { }
 
@@ -32,20 +37,35 @@ export class CurrencyConverterComponent implements OnInit {
 	}
 
 	onConvertClick():void{
-		this.convertCurrency(this.currencyOne.value, this.currencyTwo.value);
+		if(this.converterForm.status === "INVALID") return;
+		this.convertCurrency(this.converterForm.value.currencyOne, this.converterForm.value.currencyTwo);
 	}
 
 	convertCurrency(currencyOne: string, currencyTwo: string):void {
 		// fetch currency rates for currencyOne.
 		this.dataFetchingService.fetchCurrencyData(false, { base: currencyOne }).subscribe(
 			(res) => {
-				this.result = this.amount.value * res.rates[currencyTwo];
+
+				this.result = this.converterForm.value.amount * res.rates[this.converterForm.value.currencyTwo];
+				console.log("result", this.result)
 			},
 			(err) => {
 				console.log("err", err);
 				this.error = true;
 			});
 	}
+
+
+
+	
+	numberValidator(control:AbstractControl): {[key:string]:any} {
+		
+		console.log("jello")
+		console.log("control.value", control.value)
+		const input = (isNaN(control.value))
+		console.log("input",input)
+		return input ? { "isNumber": { value: true } } : null;
+	};
 	
 
 }
