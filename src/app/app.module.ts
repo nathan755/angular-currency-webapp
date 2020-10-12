@@ -18,6 +18,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import { RisersFallersComponent } from './components/risers-fallers/risers-fallers.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+// import { FormsModule} from "@angular/forms/forms";
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -40,7 +41,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    // FormsModule
     
     
   ],

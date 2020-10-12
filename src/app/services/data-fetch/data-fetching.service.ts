@@ -9,8 +9,6 @@ interface response {
 	date:string
 }
 
-
-
 @Injectable({
 	providedIn: 'root'
 })
@@ -43,7 +41,6 @@ export class DataFetchingService {
 	}
 
 	dispatchData(config:object){
-		
 		this.dataSource.next(config);
 	}
 

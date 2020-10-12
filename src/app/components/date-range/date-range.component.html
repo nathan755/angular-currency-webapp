@@ -6,7 +6,7 @@
             <input matEndDate placeholder="End Date" formControlName="end">
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-date-range-picker color="blue" #picker></mat-date-range-picker>
     </mat-form-field>
     <button  [ngStyle]="{'cursor': range.status==='INVALID' ? 'not-allowed':''}" [disabled]="range.status === 'INVALID' " (click)="onDateSubmit()">Submit</button>
 </div>

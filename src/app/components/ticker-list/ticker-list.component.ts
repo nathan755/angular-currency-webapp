@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DateRangeService } from "../../services/date-range/date-range.service";
 import { DataFetchingService } from "../../services/data-fetch/data-fetching.service";
 @Component({
@@ -12,7 +12,10 @@ export class TickerListComponent implements OnInit {
 	end: string;
 	tickers: string[];
 	error: boolean;
-	
+
+	@Input() data;
+
+
 	constructor(private dateRange: DateRangeService, private dataService: DataFetchingService) { }
 
 	ngOnInit(): void {

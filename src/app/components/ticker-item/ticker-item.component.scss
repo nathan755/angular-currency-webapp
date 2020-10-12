@@ -1,20 +1,17 @@
 .ticker-item{
-    background-color: white;
+    
     box-shadow: 1px 1px 2px black;
     margin: 6px;
     cursor: pointer;
+
     
     &__header{
         display: flex;
         align-items: center;
         justify-content: center;
-        // align-items: center;
+        
         height: 50px;
-        p{
-            
-            
-      
-        }
+        
     }
     &__content{
         display: flex;
@@ -29,8 +26,9 @@
         width: 25px;
         border-radius: 50%;
         margin-left: 6px;
-        
-        
-        
     }
+}
+
+.highcharts-container{
+    background-color: green;
 }

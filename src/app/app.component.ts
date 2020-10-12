@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { DataFetchingService } from "./services/data-fetch/data-fetching.service";
 
-import * as moment from 'moment';
-
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -11,10 +9,12 @@ import * as moment from 'moment';
 export class AppComponent {
 	
 	data;
-
+	
 	constructor( private dataService: DataFetchingService) { }
 	
 	ngOnInit(): void {
+		// Subscribe to data updates from ticker graphs.
+		// Pass down to graph component.
 		this.dataService.data.subscribe( data => this.data = data )
 	}
 

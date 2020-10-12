@@ -29,5 +29,38 @@ button {
 	outline: inherit;
 }
 
+.error-msg {
+	color: $red;
+}
 
+h2 {
+	font-size: 2em;
+	color: $blue;
+	margin: 0px;
+}
+.clear{
+	clear: both;
+}
+.mat-datepicker-toggle{
+	background-color: $blue !important ;
+}
+.mat-calendar-body-selected {
+	background-color: $blue !important ;
+}
+
+.mat-calendar-body-in-range::before {
+	background-color: $blue;
+}
+
+.mat-datepicker-toggle-active {
+	background-color: $blue !important;
+}
+
+
+
+
+
+select.ng-valid {
+	// background-color: $graph-blue;
+}
 

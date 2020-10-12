@@ -3,7 +3,7 @@
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 5fr 12fr;
-    
+    grid-gap: 6px;
     
     &__nav-bar{
         
@@ -21,6 +21,7 @@
         &__tools{
             display: grid;
             grid-template-rows: 1fr 1fr;
+            grid-gap: 6px;
             
         }
     }

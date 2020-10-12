@@ -11,30 +11,33 @@ export class GraphComponent implements OnInit {
 	
 	Highcharts: typeof Highcharts = Highcharts;
 	chartOptions;
-	updateFlag:boolean;
 	@Input() data;
 	dataArray = []
-	test:boolean
+	update:boolean
+	
 	constructor( private dataService: DataFetchingService) { }
 
 	ngOnInit(): void {
 		const config = {
-			title: { text: "CLick on graphs above to compare" },
+			title: { text: "Click Graphs Above To Compare" },
 			chart: {
 				type: 'spline',
-				height:null,
-				width:null
+				height:600,
+				width:1300
 			},
 			series:[{name:"", data:[1]}],
 			yAxis: {
 				title:{
-					text:"Exchange Rate"
+					text:"Percent Variance"
 				},
 		
 				
 			},
 			xAxis: {
 				type: "datetime",
+				title:{
+					text:"Date Range"
+				},
 				
 			},
 			credits: {
@@ -42,69 +45,34 @@ export class GraphComponent implements OnInit {
 			},
 		};
 		this.chartOptions = config;
-
-		let test = [
-			[1602025200000, 1.2910],
-			[1602025200000, 1.3238],
-			[1602025200000, 1.3208],
-			[1602025200000, 1.3160],
-			[1602025200000, 1.2806],
-			[1602025200000, 1.2541],
-			[1602025200000, 1.2278],
-			[1602025200000, 1.2406],
-
-		]
-		let test2 = [
-			[1602025200000, 8.72],
-			[1602025200000, 8.51],
-			[1602025200000, 8],
-			[1602025200000, 8.5],
-			[1602025200000, 10],
-			[1602025200000, 1.5],
-			[1602025200000, 3.2],
-			[1602025200000, 3.2],
-
-		]
-		let result = this.convertToPercentageChange(test2);
-		console.log("result",result)
-
-
-
-
-
-
 	}
 
 	ngOnChanges(): void {
-		console.log("data", this.data[0])
 		if(this.data !== undefined){
-			// convert prices into percentage var
-			
 			const convertedPrices = this.convertToPercentageChange(this.data[0].data);
 			const formattedData = {"name":this.data[0].name, data:convertedPrices};
-
-
-			this.dataArray.push(formattedData)
-			
+			this.dataArray.push(formattedData);
 		}
-		
-		
 		this.chartOptions = {...this.chartOptions, series:this.dataArray}
-		this.test = true
+		this.update = true;
 	}
 
+	onClearClick():void{
+		this.chartOptions = {...this.chartOptions, series:[{name:"", data:[1]}]};
+		this.update = true;
+		this.dataArray = [];
+	}
+	
 	convertToPercentageChange(data:Array<number[]>):Array<number[]>{
 		// function converts exchange rates to percent change so the data can be compared against other currencies.
 		const length = data.length;
 		const output = [];
 		for(let i=0; i<length-1; i++){
-			const previous = data[i][1]
+			const previous = data[i][1];
 			const current = data[i+1][1];
 			const result = ((current - previous) / previous)*100;
 			output.push([data[i][0], result]);
 		}
 		return output; 	
 	}
-
-
 }

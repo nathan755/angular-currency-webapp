@@ -1,4 +1,4 @@
 
 <div class="ticker-list">
-    <app-ticker-item *ngFor="let item of tickers" [end]="end" [start]="start" [currency]="item"></app-ticker-item>
+    <app-ticker-item [mainChartData]="data" *ngFor="let item of tickers" [end]="end" [start]="start" [currency]="item"></app-ticker-item>
 </div>

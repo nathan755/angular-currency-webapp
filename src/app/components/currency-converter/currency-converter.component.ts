@@ -13,15 +13,12 @@ export class CurrencyConverterComponent implements OnInit {
 	rates:object;
 	error:boolean = false;
 	result:number;
-
-
+	
 	converterForm = new	FormGroup({
 		amount : new FormControl("",[Validators.required,this.numberValidator]),
 		currencyOne : new FormControl("",Validators.required),
 		currencyTwo : new FormControl("",Validators.required)
 	},{updateOn:'submit'});
-
-
 	
 	constructor(private dataFetchingService:DataFetchingService ) { }
 
@@ -41,7 +38,7 @@ export class CurrencyConverterComponent implements OnInit {
 		this.convertCurrency(this.converterForm.value.currencyOne, this.converterForm.value.currencyTwo);
 	}
 
-	convertCurrency(currencyOne: string, currencyTwo: string):void {
+	convertCurrency(currencyOne: string, currencyTwo: string): void {
 		// fetch currency rates for currencyOne.
 		this.dataFetchingService.fetchCurrencyData(false, { base: currencyOne }).subscribe(
 			(res) => {
@@ -54,18 +51,9 @@ export class CurrencyConverterComponent implements OnInit {
 				this.error = true;
 			});
 	}
-
-
-
 	
 	numberValidator(control:AbstractControl): {[key:string]:any} {
-		
-		console.log("jello")
-		console.log("control.value", control.value)
-		const input = (isNaN(control.value))
-		console.log("input",input)
+		const input = (isNaN(control.value));
 		return input ? { "isNumber": { value: true } } : null;
 	};
-	
-
 }

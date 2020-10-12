@@ -3,8 +3,6 @@ import { DataFetchingService } from "../../services/data-fetch/data-fetching.ser
 import * as moment from "moment";
 import * as Highcharts from 'highcharts';
 
-
-
 @Component({
 	selector: 'app-ticker-item',
 	templateUrl: './ticker-item.component.html',
@@ -20,6 +18,7 @@ export class TickerItemComponent implements OnInit {
 	endDate: string;
 	error: boolean;
 	rates: Array<object>;
+	loading: boolean = true;
 
 	Highcharts: typeof Highcharts = Highcharts;
 	chartOptions;
@@ -28,31 +27,31 @@ export class TickerItemComponent implements OnInit {
 
 	ngOnInit(): void {
 		// use last 7 days on init (not including today).
-		const endDate = moment().subtract(1, "days").format("YYYY-MM-DD");
+		const endDate = moment().subtract(2, "days").format("YYYY-MM-DD");
 		const startDate = moment().subtract(7, "days").format("YYYY-MM-DD");
 		const config = {
 			title: { text: "USD/" + this.currency },
 			chart: {
 				height: 200,
-				width:200,
+				width: 200,
 				type: 'spline',
 			},
-			legend:{ enabled:false },
+			legend: { enabled: false },
 			series: [{
 				name: "Exchange Rate",
 				data: [1],
 			}],
 			yAxis: {
-				title:{
-					text:null
+				title: {
+					text: null
 				}
 			},
 			xAxis: {
 				type: "datetime",
 			},
-			
-		
-			
+
+
+
 			credits: {
 				enabled: false
 			},
@@ -60,11 +59,14 @@ export class TickerItemComponent implements OnInit {
 		};
 		this.chartOptions = config
 		this.fetchData(startDate, endDate, this.currency);
+		this.loading = false;
 	}
 
 	ngOnChanges(): void {
 		// once the user changes the date range use props
-		this.fetchData(this.start, this.end, this.currency);
+		if (!this.loading) {
+			this.fetchData(this.start, this.end, this.currency);
+		}
 	}
 
 	fetchData(start: string, end: string, currency: string): void {
@@ -80,65 +82,56 @@ export class TickerItemComponent implements OnInit {
 				title: { text: "USD/" + this.currency },
 				chart: {
 					height: 200,
-					width:200,
+					width: 200,
 					type: 'spline',
 				},
-				legend:{ enabled:false },
+				legend: { enabled: false },
 				series: [{
 					name: "Exchange Rate",
 					data: currencyPrices,
 				}],
 				yAxis: {
-					title:{
-						text:null
+					title: {
+						text: null
 					}
 				},
 				xAxis: {
 					type: "datetime",
 				},
-				
-			
-				
 				credits: {
 					enabled: false
 				},
 
 			};
 			this.chartOptions = { ...config };
-			
+
 		},
 			(err) => {
 				console.log("err", err)
 				this.error = true;
 			});
 	}
-	
-	formatData(data:object){
+
+	formatData(data: object) {
 		// format and sort data for highcharts config
 		const formattedData = [];
 		const array = Object.entries(data);
 		const length = array.length;
-		for(let i=0; i<length; i++ ){
+		for (let i = 0; i < length; i++) {
 			const timeStamp = moment(array[i][0]).unix();
 			const price = array[i][1][this.currency];
-			formattedData.push([timeStamp*1000, price]);
+			formattedData.push([timeStamp * 1000, price]);
 		}
-		formattedData.sort( (a, b) => {
+		formattedData.sort((a, b) => {
 			return a[0] - b[0]
 		});
 		return formattedData;
 	}
 
-	ongraphClick():void{
-		// btn to show this graphs data on main graph.
-
-		// console.log("rates", this.rates)
-
-		this.dataFetchingService.dispatchData( [{
-					
-					name:this.currency,
-					
-					data: this.rates,
-				}]);
+	ongraphClick(): void {
+		this.dataFetchingService.dispatchData([{
+			name: this.currency,
+			data: this.rates,
+		}]);
 	}
 }
