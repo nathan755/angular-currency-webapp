@@ -1,33 +1,33 @@
+
 @import "../../../styles.scss";
+
 .converter{
     background-color: white;
     box-shadow: 2px 2px 4px black;
-    margin: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    // margin: 3px;
+    margin: 3px 18px 6px 3px;
+    padding: 12px 24px;
     height: 100%;
+    position: relative;
+    box-sizing: border-box;
     .error-msg-input{
-        margin-left: 6px;
         color: $red;
+        position: relative;
+        bottom: 12px;
     }
     h2{
-        color: $blue;
-        font-size: 2em;
         text-align: center;
-    }
-    form{
-        width: 85%;
     }
     p{
         color: $blue;
         font-size: 1.3em;
+        text-align: center;
+        margin-top: 6px;
     }
     &__input{
-        width: 85%;
         height: 40px;
-        margin-left: 6px;
         border-bottom: solid 2px $blue;
+        margin-bottom: 12px;
         cursor: text;
         input {
             color: $blue;
@@ -43,8 +43,8 @@
         }
     }
     &__dropdown{
-        width: 85%;
-        margin: 6px;
+        width: 100%;
+        margin-bottom: 12px;
         label{
             display: block;
             font-size: 1.3em;
@@ -63,7 +63,6 @@
             padding:30px;
             font-size: 1.1em;
             cursor: pointer;
-            padding: 6px;
         }
     }
     &__button {
@@ -72,8 +71,6 @@
         align-items: center;
         justify-content: center;
         background-color: $blue;
-        width: 85%;
-        margin: 12px 0 12px 6px;
         color: white;
         height: 40px;
         cursor: pointer;
