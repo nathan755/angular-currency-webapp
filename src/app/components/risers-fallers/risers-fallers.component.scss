@@ -1,0 +1,32 @@
+@import "../../../styles.scss";
+.risers-fallers {
+    background-color: white;
+    height: 100%;
+    margin: 3px 12px 3px 3px;
+    box-shadow: 2px 2px 4px black;
+    box-sizing: border-box;
+    h2{
+        text-align: center;
+        padding-top: 6px;
+    }
+    table {
+        width: 85%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    label{
+        width: 85%;
+        margin: 6px auto;
+        display: block;
+        font-weight: bold;
+    }
+    tr:nth-child(even){
+        background-color: #dddddd
+    }
+    small {
+        float: right;
+        
+        margin-right: 12px;
+        font-style: italic;
+    }
+}

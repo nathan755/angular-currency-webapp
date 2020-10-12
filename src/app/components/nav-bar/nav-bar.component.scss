@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+.nav-bar{
+    height: 100%;
+    display: flex;
+    background-color:$blue;
+    align-items: center;
+    h1 {
+        color: #e8e8e8;
+        padding-left: 12px;
+        display: inline;
+    }
+    :last-child{
+        margin-left: auto;
+    }
+
+    
+}
