@@ -15,7 +15,7 @@ export class GraphComponent implements OnInit {
 	dataArray = []
 	update:boolean
 	
-	constructor( private dataService: DataFetchingService) { }
+	constructor() { }
 
 	ngOnInit(): void {
 		const config = {
@@ -25,13 +25,19 @@ export class GraphComponent implements OnInit {
 				height:600,
 				width:1300
 			},
+		
 			series:[{name:"", data:[1]}],
 			yAxis: {
 				title:{
 					text:"Percent Variance"
 				},
-		
-				
+			},
+			plotOptions:{
+				series:{
+					tooltip: {
+						valueDecimals: 3,
+					},
+				}
 			},
 			xAxis: {
 				type: "datetime",
