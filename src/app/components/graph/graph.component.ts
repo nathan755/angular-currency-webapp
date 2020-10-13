@@ -15,7 +15,7 @@ export class GraphComponent implements OnInit {
 	dataArray = []
 	update:boolean
 	
-	constructor( private dataService: DataFetchingService) { }
+	constructor() { }
 
 	ngOnInit(): void {
 		const config = {
@@ -25,13 +25,19 @@ export class GraphComponent implements OnInit {
 				height:600,
 				width:1300
 			},
+		
 			series:[{name:"", data:[1]}],
 			yAxis: {
 				title:{
 					text:"Percent Variance"
 				},
-		
-				
+			},
+			plotOptions:{
+				series:{
+					tooltip: {
+						valueDecimals: 3,
+					},
+				}
 			},
 			xAxis: {
 				type: "datetime",
@@ -49,6 +55,18 @@ export class GraphComponent implements OnInit {
 
 	ngOnChanges(): void {
 		if(this.data !== undefined){
+			// check if the data is already in state => if it is, dont add.
+			const incommingDataTicker:string = this.data[0].name;
+			let duplicated:boolean = false;
+			const length:number = this.dataArray.length;
+			for(let i = 0; i<length; i++){
+				if(this.dataArray[i].name === incommingDataTicker ){
+					duplicated = true;
+					break;
+				}
+			}
+			if(duplicated)return;			
+			
 			const convertedPrices = this.convertToPercentageChange(this.data[0].data);
 			const formattedData = {"name":this.data[0].name, data:convertedPrices};
 			this.dataArray.push(formattedData);

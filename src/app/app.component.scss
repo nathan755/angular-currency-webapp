@@ -1,21 +1,20 @@
 @import "../styles.scss";
 .dashboard{
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-rows: 1fr 5fr 12fr;
     &__ticker{
         overflow-x: scroll;
         min-height: 227px;
+        overflow-y: hidden;
     }
     &__main-content-wrapper{
-        margin-top: 6px;
         display: grid;
         grid-template-columns: 3fr 1fr;
+        padding-bottom: 6px;
         &__tools{
             display: grid;
             grid-template-rows: 1fr 1fr;
-            grid-gap: 6px;
-            
         }
     }
 }

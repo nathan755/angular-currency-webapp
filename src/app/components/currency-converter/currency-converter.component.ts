@@ -52,7 +52,12 @@ export class CurrencyConverterComponent implements OnInit {
 	}
 	
 	numberValidator(control:AbstractControl): {[key:string]:any} {
+		let invalidNumber:boolean = false;
+		if ( control.value[0] ==="0" && control.value[1] !== "."){
+			invalidNumber = true;
+		}
 		const input = (isNaN(control.value));
-		return input ? { "isNumber": { value: true } } : null;
+
+		return (input || invalidNumber) ? { "isNumber": { value: true } } : null;
 	};
 }

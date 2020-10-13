@@ -49,9 +49,13 @@ export class TickerItemComponent implements OnInit {
 			xAxis: {
 				type: "datetime",
 			},
-
-
-
+			plotOptions:{
+				series:{
+					tooltip: {
+						valueDecimals: 2,
+					},
+				}
+			},
 			credits: {
 				enabled: false
 			},

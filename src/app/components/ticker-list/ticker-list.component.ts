@@ -14,8 +14,7 @@ export class TickerListComponent implements OnInit {
 	error: boolean;
 
 	@Input() data;
-
-
+	
 	constructor(private dateRange: DateRangeService, private dataService: DataFetchingService) { }
 
 	ngOnInit(): void {

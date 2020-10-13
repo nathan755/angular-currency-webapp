@@ -1,32 +1,35 @@
 <div class="converter">
 	<h2>Converter</h2>
+	
 	<form #converter="ngForm" (submit)="onConvertClick()" [formGroup]="converterForm">
 		<div class="converter__input">
 			<input type="text" placeholder="Enter Amount.." formControlName="amount">
 		</div>
-		<span class="error-msg-input" *ngIf="converterForm.controls.amount.errors && converter.submitted">Invalid Input</span>
+		<small class="error-msg" [ngClass]="converterForm.controls.amount.errors && converter.submitted ?'visible':'hidden'">Invalid Input</small>
 		<div class="converter__dropdown">
 			<label>From</label>
 			<select formControlName="currencyOne">
 				<option [ngValue]="undefined" selected>Select</option>
 				<option *ngFor="let currency of tickers">{{currency}}</option>
 			</select>
-			<span class="error-msg" *ngIf="converterForm.controls.currencyOne.errors && converter.submitted">Select a Currency</span>
+			<small class="error-msg" [ngClass]="converterForm.controls.currencyOne.errors && converter.submitted ?'visible':'hidden'">Select a Currency</small>
 		</div>
 		<div class="converter__dropdown">
 			<label>To</label>
 			<select formControlName="currencyTwo">
 				<option [ngValue]="undefined" selected>Select</option>
-				<option *ngFor="let currency of tickers">{{currency}}</option>
+				<option *ngFor="let currency of tickers">{{currency}} </option>
 			</select>
-			<span class="error-msg" *ngIf="converterForm.controls.currencyTwo.errors && converter.submitted">Select a Currency</span>
+			<small class="error-msg" [ngClass]="converterForm.controls.currencyTwo.errors && converter.submitted ?'visible':'hidden'">Select a Currency</small>
 		</div>
 		<div class="converter__button">
-			<button type="submit">CONVERT</button>
+			<button type="submit"><i class="fas fa-exchange-alt"></i></button>
+				<p *ngIf="converterForm.status!=='INVALID'">
+		{{converterForm.value.amount}} {{converterForm.value.currencyOne}} =
+		{{result.toFixed(2)}} {{converterForm.value.currencyTwo}}*
+	</p>
 		</div>
 	</form>
-	<p *ngIf="converterForm.status!=='INVALID'">
-		{{converterForm.value.amount}} {{converterForm.value.currencyTwo}} =
-		{{result.toFixed(2)}} {{converterForm.value.currencyOne}}
-	</p>
+	<small class="note">*Rates correct as of today</small>
+	<div class="clear"></div>
 </div>
