@@ -26,7 +26,7 @@
 			<button type="submit"><i class="fas fa-exchange-alt"></i></button>
 				<p *ngIf="converterForm.status!=='INVALID'">
 		{{converterForm.value.amount}} {{converterForm.value.currencyOne}} =
-		{{result.toFixed(2)}} {{converterForm.value.currencyTwo}}
+		{{result.toFixed(2)}} {{converterForm.value.currencyTwo}}*
 	</p>
 		</div>
 	</form>

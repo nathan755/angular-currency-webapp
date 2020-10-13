@@ -7,6 +7,7 @@
     &__ticker{
         overflow-x: scroll;
         min-height: 227px;
+        overflow-y: hidden;
     }
     &__main-content-wrapper{
         // margin-top: 6px;
