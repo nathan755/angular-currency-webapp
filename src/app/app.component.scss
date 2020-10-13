@@ -9,13 +9,19 @@
     }
     &__main-content-wrapper{
         margin-top: 6px;
+        padding-bottom: 6px;
         display: grid;
         grid-template-columns: 3fr 1fr;
         &__tools{
             display: grid;
             grid-template-rows: 1fr 1fr;
             grid-gap: 6px;
+            // padding-bottom: 6px;
             
+        }
+        &__graph{
+            // padding-bottom: 6px;
+
         }
     }
 }
