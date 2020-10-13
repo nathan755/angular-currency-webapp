@@ -4,22 +4,22 @@
 		<div class="converter__input">
 			<input type="text" placeholder="Enter Amount.." formControlName="amount">
 		</div>
-		<span class="error-msg-input" *ngIf="converterForm.controls.amount.errors && converter.submitted">Invalid Input</span>
+		<small class="error-msg-input" *ngIf="converterForm.controls.amount.errors && converter.submitted">Invalid Input</small>
 		<div class="converter__dropdown">
 			<label>From</label>
 			<select formControlName="currencyOne">
 				<option [ngValue]="undefined" selected>Select</option>
 				<option *ngFor="let currency of tickers">{{currency}}</option>
 			</select>
-			<span class="error-msg" *ngIf="converterForm.controls.currencyOne.errors && converter.submitted">Select a Currency</span>
+			<small class="error-msg" *ngIf="converterForm.controls.currencyOne.errors && converter.submitted">Select a Currency</small>
 		</div>
 		<div class="converter__dropdown">
 			<label>To</label>
 			<select formControlName="currencyTwo">
 				<option [ngValue]="undefined" selected>Select</option>
-				<option *ngFor="let currency of tickers">{{currency}}</option>
+				<option *ngFor="let currency of tickers">{{currency}} </option>
 			</select>
-			<span class="error-msg" *ngIf="converterForm.controls.currencyTwo.errors && converter.submitted">Select a Currency</span>
+			<small class="error-msg" *ngIf="converterForm.controls.currencyTwo.errors && converter.submitted">Select a Currency</small>
 		</div>
 		<div class="converter__button">
 			<button type="submit">CONVERT</button>
