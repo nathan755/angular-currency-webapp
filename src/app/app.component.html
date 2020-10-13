@@ -1,20 +1,17 @@
 <div class="dashboard">
-	<div class="dashboard__nav-bar">
-		<app-nav-bar></app-nav-bar>
-	</div>
-	<div class="dashboard__ticker">
-		<app-ticker-list></app-ticker-list>
-	</div>
-	<div class="dashboard__main-content-wrapper">
-		<div class="dashboard__main-content-wrapper__graph">
-			  <app-graph [data]="data"></app-graph>
-		</div>
-		<div class="dashboard__main-content-wrapper__tools">
-			<app-currency-converter></app-currency-converter>
-			
-			
-				<app-risers-fallers> </app-risers-fallers>
-			
-		</div>
-	</div>
+  <div class="dashboard__nav-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+  <div class="dashboard__ticker">
+    <app-ticker-list></app-ticker-list>
+  </div>
+  <div class="dashboard__main-content-wrapper">
+    <div class="dashboard__main-content-wrapper__graph">
+      <app-graph [data]="data"></app-graph>
+    </div>
+    <div class="dashboard__main-content-wrapper__tools">
+	  <app-currency-converter></app-currency-converter>
+	  <app-risers-fallers> </app-risers-fallers>
+    </div>
+  </div>
 </div>

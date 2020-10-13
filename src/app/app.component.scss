@@ -1,6 +1,5 @@
 @import "../styles.scss";
 .dashboard{
-    
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 5fr 12fr;
@@ -10,23 +9,12 @@
         overflow-y: hidden;
     }
     &__main-content-wrapper{
-        // margin-top: 6px;
-        // margin-bottom: 16px;
         display: grid;
         grid-template-columns: 3fr 1fr;
         padding-bottom: 6px;
-        
         &__tools{
             display: grid;
             grid-template-rows: 1fr 1fr;
-            // padding-bottom: 6px;
-            
-            
-   
-        }
-        &__graph{
-            // padding-bottom: 6px;
-
         }
     }
 }
