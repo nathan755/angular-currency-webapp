@@ -129,6 +129,7 @@ export class TickerItemComponent implements OnInit {
 	}
 
 	ongraphClick(): void {
+		
 		this.dataFetchingService.dispatchData([{
 			name: this.currency,
 			data: this.rates,
