@@ -5,7 +5,7 @@
 		<div class="converter__input">
 			<input type="text" placeholder="Enter Amount.." formControlName="amount">
 		</div>
-		<small class="error-msg" [ngClass]="converterForm.controls.currencyOne.errors && converter.submitted ?'visible':'hidden'">Invalid Input</small>
+		<small class="error-msg" [ngClass]="converterForm.controls.amount.errors && converter.submitted ?'visible':'hidden'">Invalid Input</small>
 		<div class="converter__dropdown">
 			<label>From</label>
 			<select formControlName="currencyOne">
@@ -20,7 +20,7 @@
 				<option [ngValue]="undefined" selected>Select</option>
 				<option *ngFor="let currency of tickers">{{currency}} </option>
 			</select>
-			<small class="error-msg" [ngClass]="converterForm.controls.currencyOne.errors && converter.submitted ?'visible':'hidden'">Select a Currency</small>
+			<small class="error-msg" [ngClass]="converterForm.controls.currencyTwo.errors && converter.submitted ?'visible':'hidden'">Select a Currency</small>
 		</div>
 		<div class="converter__button">
 			<button type="submit"><i class="fas fa-exchange-alt"></i></button>
